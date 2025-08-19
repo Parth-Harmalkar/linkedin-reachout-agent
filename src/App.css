@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  We're defining some CSS variables here for a consistent color scheme.
+  This makes it easy to change the look of the entire application from one place.
+*/
+:root {
+    --background-start-rgb: 243 244 246; /* A light gray */
+    --background-end-rgb: 232 234 237; /* A slightly darker gray for the gradient */
+    --primary-color: #4f46e5; /* A modern indigo */
+    --primary-hover-color: #4338ca;
+    --text-primary: #1f2937; /* A dark gray for primary text */
+    --text-secondary: #6b7280; /* A lighter gray for secondary text */
+    --card-background: #ffffff;
+    --border-color: #e5e7eb;
+}
+
+body {
+    font-family:
+        "Inter",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+    /* This creates a subtle gradient background for a more modern feel. */
+    background-color: rgb(var(--background-start-rgb));
+    background-image: linear-gradient(
+        to bottom,
+        rgb(var(--background-start-rgb)),
+        rgb(var(--background-end-rgb))
+    );
+    color: var(--text-primary);
+}
+
+/* A more subtle and refined spinner animation */
+.spinner {
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border-left-color: #ffffff;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
