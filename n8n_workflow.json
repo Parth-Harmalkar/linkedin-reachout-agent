@@ -1,0 +1,354 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-pro",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-pro"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "You are a helpful , intelligent sales assistant",
+              "role": "model"
+            },
+            {
+              "content": "Your task is to take as input a natural language description of a prospect audience, and turn that into an Apollo Search URL.\n\nHere's an example of an Apollo Search URL:\nhttps://app.apollo.io/#/people?personLocations[]=United%20States&sortAscending=false&sortByField=%5Bnone%5D&personTitles[]=owner&personTitles[]=ceo&personTitles[]=founder&personTitles[]=partner&page=1&qKeywords=creative%20agency&organizationNumEmployeesRanges[]=1%2C200\n\nThis URL describes a search for people that are\n- Located in the United States\n- Hold the titles: Owner, CEO, Founder, or Partner.\n- Have a keyword association with “creative agency”\n\nThese are the fields you can change:\norganizationLocations[], Keywords, personTitles[], and organizationNumEmployeesRanges[]\n\nUse the above template to create new url based on the given input.\nReturn your response in JSON using this format:\n\n{\"searchUrl\":\"search url goes here\"}"
+            },
+            {
+              "content": "={{ $json.body.prompt }}"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        240,
+        96
+      ],
+      "id": "2cbc48fa-ef65-4f35-9aaf-11595adf2c46",
+      "name": "Message a model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "9EUp1SGeeekIplMA",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Paste your Apify JSON output here\nconst people = [\n \n  {\n    \"first_name\": \"Ben\",\n    \"last_name\": \"Bagnulo\",\n    \"email\": \"ben@samos-e.com\",\n    \"organization_name\": \"SAMOS e-commerce\",\n    \"organization_website_url\": \"http://www.samos-e.com\",\n    \"linkedin_url\": \"http://www.linkedin.com/in/ben-bagnulo-18036b28\",\n    \"name\": \"Ben Bagnulo\",\n    \"photo_url\": \"https://media.licdn.com/dms/image/C5603AQEUwvavmR_dNQ/profile-displayphoto-shrink_400_400/0/1574783064215?e=1707350400&v=beta&t=KFHt8ww1f_n_JQNlL6kLgmR-Vj0hK3jhnMV4GZC_JSo\",\n    \"title\": \"CEO and Founder\",\n    \"industry\": \"logistics & supply chain\",\n    \"headline\": \"CEO and Founder at SAMOS e-commerce\",\n    \"seniority\": \"founder\",\n    \"estimated_num_employees\": \"3\",\n    \"city\": null,\n    \"state\": null,\n    \"country\": \"United Kingdom\",\n    \"organization_logo_url\": \"https://zenprospect-production.s3.amazonaws.com/uploads/pictures/6890bab5431c3f0001d40ba5/picture\",\n    \"organization_annual_revenue\": null,\n    \"organization_annual_revenue_printed\": null,\n    \"organization_seo_description\": \"Ship your online products your way, with SAMOS shipping. Track your order, get help with delivery and set up an integrated shopping platform.\",\n    \"organization_short_description\": \"Samos is an e–commerce delivery service that gets things to the right place at the right time, in perfect condition.\\n\\nWe work with trusted partners in every location, so our service is agile and adaptable, whatever challenges we face.\\n\\nWe strive to outperform competitors in the here and now, while keeping one eye on new ideas and technology to help us and our partners stay at the front of the pack.\",\n    \"organization_total_funding\": null,\n    \"organization_total_funding_printed\": null,\n    \"keywords\": \"ecommerce delivery, transportation, logistics, supply chain & storage, e-commerce shipping, international delivery, parcel tracking, customs clearance, ioss service, eu shipping, shipping rates, logistics management, transparent pricing, customs duties, fast delivery, integrated shipping solutions, returns management, global shipping, e-commerce integrations, shipping labels, customer satisfaction, parcel delivery, shipping partners, supply chain solutions, export services, delivery transparency, shipping technology, scalable logistics, trusted delivery, delivery notifications, customer support, hassle-free shipping, global logistics, shipping automation, shipping documentation, real-time tracking, seamless integration, delivery solutions, shipping processes, business growth, on-time delivery, cost-effective shipping, e-commerce logistics, international shipping solutions, cross-border logistics, seller support, performance tracking, logistics optimization, returns processing, delivery reliability, shipping compliance, business efficiency, logistics & supply chain\",\n    \"organization_technologies\": \"AI, Amazon AWS, Basis, Gmail, Google Analytics, Google Apps, Google Tag Manager, Hotjar, Mobile Friendly, Nginx, Remote, Route 53, Typekit\",\n    \"email_domain_catchall\": false,\n    \"id\": \"60c1d0e590bd9c0001571378\",\n    \"organization_id\": \"5e59d0e37bab8600014c7d11\",\n    \"twitter_url\": null,\n    \"facebook_url\": null,\n    \"organization_linkedin_url\": \"http://www.linkedin.com/company/samos-e-commerce\",\n    \"organization_linkedin_uid\": \"12597848\",\n    \"organization_twitter_url\": \"https://twitter.com/samos_e\",\n    \"organization_facebook_url\": \"https://www.facebook.com/samos.ecom/\",\n    \"organization_founded_year\": 2018,\n    \"organization_primary_domain\": \"samos-e.com\",\n    \"organization_phone\": \"+44 20 3475 9330\",\n    \"organization_street_address\": \"115 Mare Street\",\n    \"organization_raw_address\": \"115 Mare Street, London, England, GB\",\n    \"organization_state\": \"England\",\n    \"organization_city\": \"London\",\n    \"organization_country\": \"United Kingdom\",\n    \"organization_postal_code\": \"E8 4\",\n    \"organization_market_cap\": null\n  },\n  {\n    \"first_name\": \"Dan\",\n    \"last_name\": \"Tromp\",\n    \"email\": null,\n    \"organization_name\": \"M9 E-commerce\",\n    \"organization_website_url\": \"http://www.m9ecommerce.com.br\",\n    \"linkedin_url\": \"http://www.linkedin.com/in/dan-tromp-65489675\",\n    \"name\": \"Dan Tromp\",\n    \"photo_url\": \"https://static.licdn.com/aero-v1/sc/h/9c8pery4andzj6ohjkjp54ma2\",\n    \"title\": \"Founder and CEO\",\n    \"industry\": \"marketing & advertising\",\n    \"headline\": \"Entertainment Professional\",\n    \"seniority\": \"founder\",\n    \"estimated_num_employees\": \"16\",\n    \"city\": \"Sutton\",\n    \"state\": \"England\",\n    \"country\": \"United Kingdom\",\n    \"organization_logo_url\": \"https://zenprospect-production.s3.amazonaws.com/uploads/pictures/6815dc3c141aa900011e46ed/picture\",\n    \"organization_annual_revenue\": null,\n    \"organization_annual_revenue_printed\": null,\n    \"organization_seo_description\": \"\",\n    \"organization_short_description\": \"♾️ Experts em Digital Commerce\\n💎 Performance, Growth, CRM e CRO\\n📈 + de 250 projetos saíram do zero à milhões\",\n    \"organization_total_funding\": null,\n    \"organization_total_funding_printed\": null,\n    \"keywords\": \"advertising services, marketing & advertising\",\n    \"organization_technologies\": \"Apache, Facebook Comments, Google Font API, Mobile Friendly, Vimeo, WordPress.org\",\n    \"email_domain_catchall\": false,\n    \"id\": \"601daf6e5a0409000110eaf5\",\n    \"organization_id\": \"61ec1db6da4faf0001f227e6\",\n    \"twitter_url\": null,\n    \"facebook_url\": null,\n    \"organization_linkedin_url\": \"http://www.linkedin.com/company/m9ecommerce\",\n    \"organization_linkedin_uid\": \"80991862\",\n    \"organization_twitter_url\": null,\n    \"organization_facebook_url\": null,\n    \"organization_founded_year\": 2013,\n    \"organization_primary_domain\": \"m9ecommerce.com.br\",\n    \"organization_phone\": null,\n    \"organization_street_address\": \"777 Rua Mostardeiro\",\n    \"organization_raw_address\": \"Rua Mostardeiro, 777, 14° andar, Porto Alegre, Rio Grande do Sul 90430-001, BR\",\n    \"organization_state\": \"Rio Grande do Sul\",\n    \"organization_city\": null,\n    \"organization_country\": \"Brazil\",\n    \"organization_postal_code\": \"90430-001\",\n    \"organization_market_cap\": null\n  },\n  {\n    \"first_name\": \"Muhammad\",\n    \"last_name\": \"Saif\",\n    \"email\": \"saif@droplogicx.com\",\n    \"organization_name\": \"droplogicx | 🎯E-commerce Development Agency\",\n    \"organization_website_url\": \"http://www.droplogicx.com\",\n    \"linkedin_url\": \"http://www.linkedin.com/in/saifrazarealcommercexpert\",\n    \"name\": \"Muhammad Saif\",\n    \"photo_url\": \"https://media.licdn.com/dms/image/v2/D4D03AQGnukVIiBqxQA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1730702566266?e=2147483647&v=beta&t=q9VqaeWl4Xiui_JppRpMu07Kv-qK2X9czs7FZPzNJho\",\n    \"title\": \"CEO and Founder\",\n    \"industry\": \"information technology & services\",\n    \"headline\": \"🥇We develop Custom eCommerce Solutions (B2B & B2C), Migration, API Integration, Payment Integration, Checkout Extensibility and Shopify Hydrogen/Headless Commerce.\",\n    \"seniority\": \"founder\",\n    \"estimated_num_employees\": \"15\",\n    \"city\": \"Manchester\",\n    \"state\": \"England\",\n    \"country\": \"United Kingdom\",\n    \"organization_logo_url\": \"https://zenprospect-production.s3.amazonaws.com/uploads/pictures/68960c5a059d89000130d73d/picture\",\n    \"organization_annual_revenue\": null,\n    \"organization_annual_revenue_printed\": null,\n    \"organization_seo_description\": \"We Build You an ROI Positive CRO Program in 100 days | Register for meeting call\",\n    \"organization_short_description\": \"Droplogicx is an 100%  e-commerce development agency dedicated to Shopify and its environment. We design, develop & grow Shopify e-commerce stores.\\n\\nOur team of experts specialised in enhancing the customer experience through the implementation of Conversion Rate Optimisation (CRO), CLV and A/B testing of new UX functionalities and design layouts. We work closely with you to understand your unique business goals and design a user interface that aligns with your customer's needs.\\n\\nOur dedication to staying up-to-date with the latest trends and techniques. We read, write and speak Shopify. \\n\\nwrite to us at contact@droplogicx.com\",\n    \"organization_total_funding\": null,\n    \"organization_total_funding_printed\": null,\n    \"keywords\": \"shopify agency, ecommerce growth experts, shopify cro experts, shopify plus, shopify a, b testing, shopify theme development, shopify app development, ecommerce agency, shopify migration, custom ecommerce solutions, seo, clv agency, cxo, b2b ecommerce, multivendor commerce, ai in commerce, custom software solutions, software development, e-commerce development, shopify store design, ui ux design, platform migration, shopify seo, custom storefronts, cro, a/b testing, api integration, shopify b2b solutions, checkout upgrade, email marketing, sms marketing, growth optimization, data analytics, subscription services, headless commerce, shopify plus services, theme customization, custom coding, online retail solutions, business intelligence, market analysis, digital marketing strategies, customer engagement, retail stock management, loyalty programs, recurring revenue, purchase funnels, customer journey mapping, performance optimization, order management systems, inventory management, user experience enhancements, mobile app development, data-driven strategies, conversion rate improvement, product management, website accessibility, modern commerce solutions, digital sales channels, real-time analytics, customer segmentation, personalization tools, shopify maintenance services, fraud detection, information technology & services, search marketing, marketing, marketing & advertising, analytics, e-commerce, consumer internet, consumers, internet, computer & network security\",\n    \"organization_technologies\": \"Apache, Blue Host, Gmail, Google Apps, Google Font API, Google Tag Manager, Hubspot, Mobile Friendly, Shopify, WordPress.org\",\n    \"email_domain_catchall\": false,\n    \"id\": \"6868e5dc5fcc810001480e24\",\n    \"organization_id\": \"6408427529829f00db4fd199\",\n    \"twitter_url\": null,\n    \"facebook_url\": null,\n    \"organization_linkedin_url\": \"http://www.linkedin.com/company/droplogicx\",\n    \"organization_linkedin_uid\": \"90973347\",\n    \"organization_twitter_url\": null,\n    \"organization_facebook_url\": \"https://facebook.com/people/Droplogicx/100090159864395/\",\n    \"organization_founded_year\": 2020,\n    \"organization_primary_domain\": \"droplogicx.com\",\n    \"organization_phone\": \"+44 76 2300 5376\",\n    \"organization_street_address\": \"\",\n    \"organization_raw_address\": \"Gold Crest High Life, Downtown Giga, Sector A, DHA Phase II, Islamabad, Unite 1212, Islamabad, 44000, PK\",\n    \"organization_state\": \"Islamabad Capital Territory\",\n    \"organization_city\": \"Islamabad\",\n    \"organization_country\": \"Pakistan\",\n    \"organization_postal_code\": null,\n    \"organization_market_cap\": null\n  },\n  {\n    \"first_name\": \"Alexx\",\n    \"last_name\": \"Coelho\",\n    \"email\": \"alexx@cambsandoak.com\",\n    \"organization_name\": \"E-Commerce\",\n    \"organization_website_url\": null,\n    \"linkedin_url\": \"http://www.linkedin.com/in/alexxc\",\n    \"name\": \"Alexx Coelho\",\n    \"photo_url\": \"https://media.licdn.com/dms/image/v2/D4E03AQHt63_vYlIF5Q/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1723419955920?e=2147483647&v=beta&t=VaIJ4utedTERn1IBSedHqnJNGPtfxsUtl155ZTWqWoA\",\n    \"title\": \"Co-Founder\",\n    \"headline\": \"E-commerce & Real Estate Entrepreneur\",\n    \"seniority\": \"founder\",\n    \"city\": \"Cambridge\",\n    \"state\": \"England\",\n    \"country\": \"United Kingdom\",\n    \"organization_logo_url\": \"https://zenprospect-production.s3.amazonaws.com/uploads/pictures/63edac0a998f12000100b12d/picture\",\n    \"email_domain_catchall\": false,\n    \"id\": \"66cb078f296fe500016e5109\",\n    \"organization_id\": \"604a77685e366f0001d21076\",\n    \"twitter_url\": null,\n    \"facebook_url\": null,\n    \"organization_linkedin_url\": \"http://www.linkedin.com/company/amazonistan-inc\",\n    \"organization_linkedin_uid\": \"68836224\",\n    \"organization_twitter_url\": null,\n    \"organization_facebook_url\": null,\n    \"organization_founded_year\": 2019,\n    \"organization_primary_domain\": null,\n    \"organization_phone\": null\n  },\n  {\n    \"first_name\": \"Joseph\",\n    \"last_name\": \"Condren\",\n    \"email\": null,\n    \"organization_name\": \"Luke Condren Writing\",\n    \"organization_website_url\": \"http://www.lukecondren.co.uk\",\n    \"linkedin_url\": \"http://www.linkedin.com/in/josephcondren\",\n    \"name\": \"Joseph Condren\",\n    \"photo_url\": \"https://media.licdn.com/dms/image/v2/D4E03AQE0o1-16y7Asg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1724944988232?e=2147483647&v=beta&t=fxvrf1SRk_a2_7CImJQ1zfY7agkVr3DqY3MUa8E33a8\",\n    \"title\": \"E-commerce Fractional CMO\",\n    \"industry\": null,\n    \"headline\": \"E-commerce Fractional CMO\",\n    \"seniority\": \"c_suite\",\n    \"estimated_num_employees\": null,\n    \"city\": \"Blackburn\",\n    \"state\": \"England\",\n    \"country\": \"United Kingdom\",\n    \"organization_logo_url\": \"https://zenprospect-production.s3.amazonaws.com/uploads/pictures/674cd8029b40410001819c1d/picture\",\n    \"organization_annual_revenue\": null,\n    \"organization_annual_revenue_printed\": null,\n    \"organization_seo_description\": null,\n    \"organization_short_description\": null,\n    \"organization_total_funding\": null,\n    \"organization_total_funding_printed\": null,\n    \"keywords\": null,\n    \"organization_technologies\": null,\n    \"email_domain_catchall\": false,\n    \"id\": \"54a3d3057468692cf0b6d315\",\n    \"organization_id\": \"674cd8002bfbd30001307ed5\",\n    \"twitter_url\": null,\n    \"facebook_url\": null,\n    \"organization_linkedin_url\": \"http://www.linkedin.com/company/luke-condren-writing\",\n    \"organization_linkedin_uid\": \"86920399\",\n    \"organization_twitter_url\": null,\n    \"organization_facebook_url\": null,\n    \"organization_founded_year\": null,\n    \"organization_primary_domain\": \"lukecondren.co.uk\",\n    \"organization_phone\": null,\n    \"organization_street_address\": null,\n    \"organization_raw_address\": null,\n    \"organization_state\": null,\n    \"organization_city\": null,\n    \"organization_country\": null,\n    \"organization_postal_code\": null,\n    \"organization_market_cap\": null\n  },\n  {\n    \"first_name\": \"Louie\",\n    \"last_name\": \"Babb\",\n    \"email\": \"louie@karmoon.co.uk\",\n    \"organization_name\": \"E-commerce Studio: Shopify Agency\",\n    \"organization_website_url\": \"http://www.e-commerce.studio\",\n    \"linkedin_url\": \"http://www.linkedin.com/in/louiebabb\",\n    \"name\": \"Louie Babb\",\n    \"photo_url\": \"https://media.licdn.com/dms/image/v2/C4D03AQF-iOqlkIYUJQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1559214304237?e=2147483647&v=beta&t=9MVbzIgNE5SRBUhut9PLopbDlnJW4lLni8wRwR0gqkU\",\n    \"title\": \"Founder\",\n    \"industry\": \"design\",\n    \"headline\": \"Founder of E-commerce Studio: Shopify Design & Development Agency.\\n\\nECS formerly Karmoon\",\n    \"seniority\": \"founder\",\n    \"estimated_num_employees\": \"2\",\n    \"city\": \"Broxbourne\",\n    \"state\": \"England\",\n    \"country\": \"United Kingdom\",\n    \"organization_logo_url\": \"https://zenprospect-production.s3.amazonaws.com/uploads/pictures/68958c13797e9c0001b17f0f/picture\",\n    \"organization_annual_revenue\": null,\n    \"organization_annual_revenue_printed\": null,\n    \"organization_seo_description\": \"With over 7 years of experience as a Shopify Plus agency and building market-leading Shopify stores, Karmoon can take your business to the next level.\",\n    \"organization_short_description\": \"Freelance Shopify Designer/Developer\\n\\nEvery project I start, I start the same, empty. It's a blank canvas and I start with no pre-conceptions and bring no ego. This is your project and my sole aim is to help you succeed wherever I can. I want to know everything I can possibly know about your brand, what first inspired you to start, what drives to progress everyday and where you're heading in the future. I love helping clients succeed and learning as much as I can in the process.\\n\\nI don't know what first inspired me to go into design and development but I've always been a creative and always loved taking a blank canvas and building it into something beautiful. Strangely, I enjoy the frustration of problem solving just as much as the satisfaction the of finding the solution. For these two reasons I love design and code.\\n\\nProgression is what drives me everyday, I hate the idea of being the same person I am today as I was last year. I try to learn from every project, whether it be design choices, coding best practices or ways to help a projects succeed. Every project I build, I build to the best of my abilities with the tools that I have.\\n\\nThis is what I plan for the future, to be better than yesterday.\",\n    \"organization_total_funding\": null,\n    \"organization_total_funding_printed\": null,\n    \"keywords\": \"design services, ecommerce development, shopify plus, bespoke design, ux design, shop setup, theme customization, app integration, conversion optimization, email marketing, customer experience, seo strategy, product description writing, mobile responsive design, site speed optimization, ongoing support, customer journey mapping, subscription service, online store migration, headless commerce, a/b testing, cro services, digital marketing, branding impact, responsive website design, strategic planning, customer satisfaction, inventory management, payment integration, user interface design, data analysis, customer feedback, automation tools, membership features, ecommerce analytics, target audience research, content strategy, social proof, visual storytelling, key performance indicators, product marketing, client collaboration, creative strategy, brand visibility, market analysis, subscription management, product launch support, integrated marketing, service customization, product discovery, multi-channel marketing, marketing & advertising, data analytics\",\n    \"organization_technologies\": \"AI, Ahrefs, Algolia, Amazon AWS, Android, Attentive, Basis, Circle, Discord, GitLab, Gmail, Google Apps, Google Tag Manager, Gorgias, Hotjar, Intuit, IoT, Loox, Micro, Mobile Friendly, NSOne, Phoenix, Render, Reviews, Semrush, Terraform, TikTok, Vimeo\",\n    \"email_domain_catchall\": false,\n    \"id\": \"61025ff9db25020001526905\",\n    \"organization_id\": \"5e59d5ac531fc500014f7715\",\n    \"twitter_url\": null,\n    \"facebook_url\": null,\n    \"organization_linkedin_url\": \"http://www.linkedin.com/company/ecommercestusio\",\n    \"organization_linkedin_uid\": \"28491843\",\n    \"organization_twitter_url\": null,\n    \"organization_facebook_url\": null,\n    \"organization_founded_year\": 2017,\n    \"organization_primary_domain\": \"e-commerce.studio\",\n    \"organization_phone\": \"+44 74 6848 6568\",\n    \"organization_street_address\": \"City Road\",\n    \"organization_raw_address\": \"City Road, London EC1V 2NX, GB\",\n    \"organization_state\": \"England\",\n    \"organization_city\": \"London\",\n    \"organization_country\": \"United Kingdom\",\n    \"organization_postal_code\": \"EC1V 2NX\",\n    \"organization_market_cap\": null\n  },\n  {\n    \"first_name\": \"Rachael\",\n    \"last_name\": \"Bone\",\n    \"email\": null,\n    \"organization_name\": \"The Inside E-commerce Academy\",\n    \"organization_website_url\": \"http://www.insideacademy.co.uk\",\n    \"linkedin_url\": \"http://www.linkedin.com/in/rachaelbone\",\n    \"name\": \"Rachael Bone\",\n    \"photo_url\": \"https://media.licdn.com/dms/image/v2/D4D03AQHO-7pCTrPuHQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1707087615053?e=2147483647&v=beta&t=oMFSp2ENe6j4-5mVbtyM2e4G1eJsd0ei1v4zwqmaYCY\",\n    \"title\": \"Founder\",\n    \"industry\": \"professional training & coaching\",\n    \"headline\": \"Founder\",\n    \"seniority\": \"founder\",\n    \"estimated_num_employees\": \"3\",\n    \"city\": \"Manchester\",\n    \"state\": \"England\",\n    \"country\": \"United Kingdom\",\n    \"organization_logo_url\": \"https://zenprospect-production.s3.amazonaws.com/uploads/pictures/6768a309506a56000170b621/picture\",\n    \"organization_annual_revenue\": null,\n    \"organization_annual_revenue_printed\": null,\n    \"organization_seo_description\": \"\",\n    \"organization_short_description\": \"The Inside Academy offers progressive and valuable digital business enterprise training to individuals facing the most complex barriers to employment. Our mission is to empower and equip these individuals with the necessary skills, knowledge, and support to overcome obstacles and succeed in the world of entrepreneurship. Through our lived experience led, comprehensive training programs, we provide practical guidance, mentorship, and resources to unlock their potential and create pathways to sustainable digital self-employment. By addressing the unique challenges they face, we strive to foster economic empowerment and reduce the barriers to achieving employment success.\",\n    \"organization_total_funding\": null,\n    \"organization_total_funding_printed\": null,\n    \"keywords\": \"prison education, lived experience, e-commerce training, employment barriers, rehabilitation programs, accredited courses, support for ex-offenders, entrepreneurship, financial self-sufficiency, social value programs, criminal justice reform, community partnerships, work readiness, distance learning, business skills development, confidence building, post-release support, job training, social entrepreneurship, prison resettlement, meaningful employment, skills training, educational reform, innovative education, self-reliance, non-customer facing businesses, barriers to employment, community engagement, feedback mechanisms, peer support, social impact, transformational education, flexible learning, career development, employment support services, digital entrepreneurship, overcoming stigma, inclusive employment, second chance, realistic employment pathways, sustainable business practices, mentorship programs, supportive learning environments, work-life balance, social responsibility, funding partnerships, holistic support, prisoner well-being, social enterprise\",\n    \"organization_technologies\": \"Mobile Friendly, Squarespace ECommerce, Typekit, WordPress.org\",\n    \"email_domain_catchall\": false,\n    \"id\": \"66eed46f75f3f50001db3fc6\",\n    \"organization_id\": \"65436a1f1f1e2000013e0086\",\n    \"twitter_url\": null,\n    \"facebook_url\": null,\n    \"organization_linkedin_url\": \"http://www.linkedin.com/company/the-inside-e-commerce-academy\",\n    \"organization_linkedin_uid\": \"98225401\",\n    \"organization_twitter_url\": null,\n    \"organization_facebook_url\": null,\n    \"organization_founded_year\": 2021,\n    \"organization_primary_domain\": \"insideacademy.co.uk\",\n    \"organization_phone\": null,\n    \"organization_street_address\": \"\",\n    \"organization_raw_address\": \"140 Lee Lane, Bolton, Greater Manchester BL6 7AF, GB\",\n    \"organization_state\": \"England\",\n    \"organization_city\": \"Bolton\",\n    \"organization_country\": \"United Kingdom\",\n    \"organization_postal_code\": null,\n    \"organization_market_cap\": null\n  },\n  {\n    \"first_name\": \"Nathan\",\n    \"last_name\": \"Nelson\",\n    \"email\": null,\n    \"organization_name\": \"Horizon | Web & E-Commerce\",\n    \"organization_website_url\": \"http://www.horizonstudios.co\",\n    \"linkedin_url\": \"http://www.linkedin.com/in/nelsonathan\",\n    \"name\": \"Nathan Nelson\",\n    \"photo_url\": \"https://media.licdn.com/dms/image/v2/D4D03AQGHgUO6z3ivDQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1665587808554?e=2147483647&v=beta&t=d3AI14UcSMNKU9nlGRGhx0WFpG1n8cfLYeQ9BqNLyys\",\n    \"title\": \"Founder & Developer\",\n    \"industry\": \"information technology & services\",\n    \"headline\": \"Freelance Developer | Web & E-Commerce\",\n    \"seniority\": \"founder\",\n    \"estimated_num_employees\": \"2\",\n    \"city\": \"Belfast\",\n    \"state\": \"Northern Ireland\",\n    \"country\": \"United Kingdom\",\n    \"organization_logo_url\": \"https://zenprospect-production.s3.amazonaws.com/uploads/pictures/689a0a9aa020360001c56948/picture\",\n    \"organization_annual_revenue\": null,\n    \"organization_annual_revenue_printed\": null,\n    \"organization_seo_description\": \"We are more than just a web agency. We work with brands to design, develop and launch websites that engage with users and convert visitors to clients. Each website is hand crafted in Belfast and built to perform.\",\n    \"organization_short_description\": \"We are more than just another web agency. We work with brands to design, build and launch results-driven websites.\",\n    \"organization_total_funding\": null,\n    \"organization_total_funding_printed\": null,\n    \"keywords\": \"web design, website development, html, css, php, wordpress, shopify, craft cms, vue js, javscript, woocommerce, user experience, craft commerce, software development, web development, information technology & services, ux\",\n    \"organization_technologies\": \"AI, Android, Basis, Blazor, Bootstrap Framework, CloudFlare Hosting, Cloudflare DNS, Facebook Custom Audiences, Facebook Login (Connect), Facebook Widget, Flutter, Gmail, Google Apps, Google Tag Manager, Laravel, Mailchimp Mandrill, Micro, Mobile Friendly, Python, React Native, Remote, SharePoint, Xamarin\",\n    \"email_domain_catchall\": true,\n    \"id\": \"5ac4f428a6da9801761f864c\",\n    \"organization_id\": \"5b14be0ca6da987135f9cf71\",\n    \"twitter_url\": null,\n    \"facebook_url\": null,\n    \"organization_linkedin_url\": \"http://www.linkedin.com/company/horizonbelfast\",\n    \"organization_linkedin_uid\": \"18159119\",\n    \"organization_twitter_url\": null,\n    \"organization_facebook_url\": null,\n    \"organization_founded_year\": 2024,\n    \"organization_primary_domain\": \"horizonstudios.co\",\n    \"organization_phone\": \"+44 74 6845 5621\",\n    \"organization_street_address\": \"\",\n    \"organization_raw_address\": \"belfast, northern ireland, united kingdom\",\n    \"organization_state\": \"Northern Ireland\",\n    \"organization_city\": \"Belfast\",\n    \"organization_country\": \"United Kingdom\",\n    \"organization_postal_code\": null,\n    \"organization_market_cap\": null\n  },\n  {\n    \"first_name\": \"Fatima\",\n    \"last_name\": \"Salhab\",\n    \"email\": \"fsalhab@flinder.co\",\n    \"organization_name\": \"flinder\",\n    \"organization_website_url\": \"http://www.flinder.co\",\n    \"linkedin_url\": \"http://www.linkedin.com/in/fatima-salhab-fcca-8636b283\",\n    \"name\": \"Fatima Salhab\",\n    \"photo_url\": \"https://media.licdn.com/dms/image/v2/C4D03AQE_0-IG-jDNPg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1660144532621?e=2147483647&v=beta&t=LovOW8nsCQNR0tO6rFKBObtKgfMH2PJOwoo4nzlnAlM\",\n    \"title\": \"Fractional CFO & E-commerce Sector Leader\",\n    \"industry\": \"management consulting\",\n    \"headline\": \"Fractional CFO & E-commerce sector leader\",\n    \"seniority\": \"c_suite\",\n    \"estimated_num_employees\": \"29\",\n    \"city\": \"London\",\n    \"state\": \"England\",\n    \"country\": \"United Kingdom\",\n    \"organization_logo_url\": \"https://zenprospect-production.s3.amazonaws.com/uploads/pictures/689b01bd7d2ff10001d7fe6c/picture\",\n    \"organization_annual_revenue\": null,\n    \"organization_annual_revenue_printed\": null,\n    \"organization_seo_description\": \"‍flinder replaces your accountant, in-house finance team and data consultants to build and run your finance function and improve reporting.\",\n    \"organization_short_description\": \"We build and run smart finance functions® and data analytics for fast-growth and complex businesses in tech, SaaS and e-commerce.\\n\\nOur mission is to deliver relevant insight that enables better business decisions.\",\n    \"organization_total_funding\": null,\n    \"organization_total_funding_printed\": null,\n    \"keywords\": \"tech, saas, ecommerce, smart finance functions, data analytics, investor readiness, system implementations, forecasting, r, d tax, portfolio cfo, emi share options, business consulting & services, smart finance, system implementation, r&d tax, fractional cfo, a2x implementation, approvalmax implementation, e-commerce, case studies, data visualisation, real-time reporting, business intelligence, performance metrics, cloud based, integrated financial forecasting, data encryption, compliance, financial controls, kpis definition library, management accounts, financial modeling, seamless integration, cash flow management, inventory management, financial reporting, automated processes, commercial drivers, marketplace integrations, embedded finance, scalable solutions, custom dashboards, fundraising support, risk management, data privacy, strategic partnerships, tax planning, growth strategies, unit economics, business transformation, client success stories, financial health check, mock due diligence, pitch preparation, cap table management, stakeholder engagement, financial oversight, computer software, information technology & services, consumer internet, consumers, internet, management consulting, analytics\",\n    \"organization_technologies\": \"AI, Active Campaign, Amazon AWS, Basis, Flywheel, Google Font API, Google Tag Manager, Hubspot, Microsoft Office 365, Mobile Friendly, Outlook, Remote, ShareThis, Stripe, Vimeo, Webflow\",\n    \"email_domain_catchall\": false,\n    \"id\": \"66fe650521557a00011cdedb\",\n    \"organization_id\": \"5a9e5b24a6da98d977fa85e0\",\n    \"twitter_url\": null,\n    \"facebook_url\": null,\n    \"organization_linkedin_url\": \"http://www.linkedin.com/company/flinder\",\n    \"organization_linkedin_uid\": \"17921501\",\n    \"organization_twitter_url\": \"https://twitter.com/flindereffect\",\n    \"organization_facebook_url\": null,\n    \"organization_founded_year\": 2017,\n    \"organization_primary_domain\": \"flinder.co\",\n    \"organization_phone\": \"+44 771 818 3226\",\n    \"organization_street_address\": \"30 Great Guildford Street\",\n    \"organization_raw_address\": \"30 Great Guildford Street, 226, London, England SE1 0ES, GB\",\n    \"organization_state\": \"England\",\n    \"organization_city\": \"London\",\n    \"organization_country\": \"United Kingdom\",\n    \"organization_postal_code\": \"SE1 0HS\",\n    \"organization_market_cap\": null\n  },\n  {\n    \"first_name\": \"Divyata\",\n    \"last_name\": \"Patil\",\n    \"email\": null,\n    \"organization_name\": \"FOUR LEAF | E-commerce Marketing\",\n    \"organization_website_url\": \"http://www.fourleafstudio.com\",\n    \"linkedin_url\": \"http://www.linkedin.com/in/divyata-patil-91982b100\",\n    \"name\": \"Divyata Patil\",\n    \"photo_url\": \"https://media.licdn.com/dms/image/v2/C4D03AQGFlcALH-a9wA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1654012303628?e=2147483647&v=beta&t=DY6aXIh2LQsrARZpIbE9sUMaiJjsfzFkemM0ZBQ5h1k\",\n    \"title\": \"Co-Founder\",\n    \"industry\": \"marketing & advertising\",\n    \"headline\": \"Co-Founder\",\n    \"seniority\": \"founder\",\n    \"estimated_num_employees\": \"5\",\n    \"city\": null,\n    \"state\": \"England\",\n    \"country\": \"United Kingdom\",\n    \"organization_logo_url\": \"https://zenprospect-production.s3.amazonaws.com/uploads/pictures/66d4fa09584886000112944d/picture\",\n    \"organization_annual_revenue\": null,\n    \"organization_annual_revenue_printed\": null,\n    \"organization_seo_description\": \"\",\n    \"organization_short_description\": \"Four Leaf is a bespoke marketing agency that helps e -commerce businesses upscale and retain consumers. \\n\\nWe help businesses tell the world what they have to offer and create an ecosystem of a long and sustainable consumer relationship. \\n\\nAs a team we are highly passionate about the brands we work with and getting them results is our utmost priority.\",\n    \"organization_total_funding\": null,\n    \"organization_total_funding_printed\": null,\n    \"keywords\": \"advertising services, marketing & advertising\",\n    \"organization_technologies\": \"AI, Basis, Remote\",\n    \"email_domain_catchall\": false,\n    \"id\": \"602b9ecf1e5f640001cdff11\",\n    \"organization_id\": \"600be8243f45e5010435a160\",\n    \"twitter_url\": null,\n    \"facebook_url\": null,\n    \"organization_linkedin_url\": \"http://www.linkedin.com/company/fourleafstudio\",\n    \"organization_linkedin_uid\": \"69730045\",\n    \"organization_twitter_url\": null,\n    \"organization_facebook_url\": null,\n    \"organization_founded_year\": null,\n    \"organization_primary_domain\": \"fourleafstudio.com\",\n    \"organization_phone\": null,\n    \"organization_street_address\": \"\",\n    \"organization_raw_address\": \"Notting Hill, London, England, GB\",\n    \"organization_state\": \"England\",\n    \"organization_city\": \"London\",\n    \"organization_country\": \"United Kingdom\",\n    \"organization_postal_code\": \"W11 2\",\n    \"organization_market_cap\": null\n  }\n\n];\n\n// This will output each person as a separate item\nreturn people.map(person => ({ json: person }));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        592,
+        96
+      ],
+      "id": "7fe84c89-40ed-4f27-9c19-249aa70a405c",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-pro",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-pro"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "You are an expert copywriter. Your task is to write a short, punchy, and personalized icebreaker based on the LinkedIn profile information of a single person.\n\nReturn your response as ONLY a valid JSON object in this exact format: `{\"icebreaker\": \"Your message here\"}`. Do not add any other text.",
+              "role": "model"
+            },
+            {
+              "content": "=Here is the profile information:\n- Name: {{ $json.first_name }} {{ $json.last_name }}\n- Title: {{ $json.title }} at {{ $json.organization_name }}\n- Location: {{ $json.city }}\n- Headline: {{ $json.headline }}\n- Company Description: {{ $json.organization_short_description }}\n- LinkedIn: {{ $json.linkedin_url }}"
+            },
+            {
+              "content": "={\"linkedInFields\":\"{{ $json.first_name }} {{ $json.last_name }}, {{ $json.city }}, {{ $json.title }} at {{ $json.organization_name }},\"}"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        176
+      ],
+      "id": "c96d2016-2677-4fc1-8aa4-3e1e4eb3f7b3",
+      "name": "Message a model1",
+      "executeOnce": false,
+      "credentials": {
+        "googlePalmApi": {
+          "id": "9EUp1SGeeekIplMA",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "maxItems": 5
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        816,
+        96
+      ],
+      "id": "83df6b3a-97cd-4242-b83c-92cdcb2cc849",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1392,
+        96
+      ],
+      "id": "7d7e23b0-66d1-4a27-87af-f5b1b5bf426e",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9f040737-4a8f-4542-ba1f-8c460f3c26b4",
+              "name": "first_name",
+              "value": "={{ $json.first_name }}",
+              "type": "string"
+            },
+            {
+              "id": "51baa519-61c2-4f07-87e3-229ad03b4625",
+              "name": "last_name",
+              "value": "={{ $json.last_name }}",
+              "type": "string"
+            },
+            {
+              "id": "2e82e108-e7f4-4472-8059-003f54cd4761",
+              "name": "email",
+              "value": "={{ $json.email }}",
+              "type": "string"
+            },
+            {
+              "id": "5a3771b9-be88-4a81-b862-ff2f5785bf99",
+              "name": "linkedin_url",
+              "value": "={{ $json.linkedin_url }}",
+              "type": "string"
+            },
+            {
+              "id": "b6d50a4d-8c27-4db3-9bf2-f070c42b3702",
+              "name": "organization_name",
+              "value": "={{ $json.organization_name }}",
+              "type": "string"
+            },
+            {
+              "id": "9d6598b3-043b-4ceb-b417-6767773cf09c",
+              "name": "organization_website_url",
+              "value": "={{ $json.organization_website_url }}",
+              "type": "string"
+            },
+            {
+              "id": "6736b6f2-49f5-41dd-ba21-608d6257cfce",
+              "name": "title",
+              "value": "={{ $json.title }}",
+              "type": "string"
+            },
+            {
+              "id": "af450aad-24f8-45cd-9816-3ebfe660c970",
+              "name": "industry",
+              "value": "={{ $json.industry }}",
+              "type": "string"
+            },
+            {
+              "id": "6a5de6ca-19aa-426d-9f57-86c2286c781b",
+              "name": "seniority",
+              "value": "={{ $json.seniority }}",
+              "type": "string"
+            },
+            {
+              "id": "3a0b5fdd-c6aa-4bf2-a585-a3ac38f0589e",
+              "name": "country",
+              "value": "={{ $json.country }}",
+              "type": "string"
+            },
+            {
+              "id": "94ab277b-1ff2-4241-baca-fba59007073f",
+              "name": "Custom text",
+              "value": "={{ JSON.parse($json.content.parts[0].text).icebreaker }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1616,
+        96
+      ],
+      "id": "6ced2c41-f46a-4c8d-9670-b9f4e0c8ece4",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "prompt-search",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        16,
+        96
+      ],
+      "id": "c446eee3-37f0-4b02-9d48-f694636457ef",
+      "name": "Webhook",
+      "webhookId": "935cc1d7-f4b2-4e14-b74f-a1a6fa11cf25"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1840,
+        96
+      ],
+      "id": "2058e21e-12eb-4f0a-95fa-75283d2f5d2f",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {
+    "Message a model": [
+      {
+        "json": {
+          "content": {
+            "parts": [
+              {
+                "text": "{\n  \"searchUrl\": \"https://app.apollo.io/#/people?personLocations[]=United%20Kingdom&sortAscending=false&sortByField=%5Bnone%5D&personTitles[]=founder&personTitles[]=ceo&personTitles[]=cto&personTitles[]=cmo&personTitles[]=coo&personTitles[]=cfo&page=1&qKeywords=e-commerce&organizationNumEmployeesRanges[]=1%2C50\"\n}"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP",
+          "index": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Message a model1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "e4eb80f3-9c3e-452d-ad47-242e3b302aab",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "1090bf46904382245c4ea136ded5fe24e29d07c828a08e804e844dc5bbc646e8"
+  },
+  "id": "D9hUbnmBux7eUL4u",
+  "tags": []
+}
