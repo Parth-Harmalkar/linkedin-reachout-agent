@@ -2,9 +2,6 @@
 
 A full-stack application that automates the process of finding and personalizing outreach to potential leads. This tool uses a React frontend, an n8n automation backend, and Google's Gemini AI to transform a simple text prompt into an enriched list of contacts with unique, AI-generated icebreaker messages.
 
-![Project Demo GIF](placeholder.gif) 
-*Note: You should replace this with a screenshot or a GIF of your application in action.*
-
 ---
 
 ## 🚀 The Problem
